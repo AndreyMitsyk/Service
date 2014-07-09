@@ -13,3 +13,18 @@ c:\users\andrey.mitsyk\documents\visual studio 2012\Projects\Service\Service\bin
 c:\users\andrey.mitsyk\documents\visual studio 2012\Projects\Service\Service\bin\Debug\Newtonsoft.Json.xml
 c:\users\andrey.mitsyk\documents\visual studio 2012\Projects\Service\Service\bin\Debug\TweetSharp.pdb
 C:\Users\andrey.mitsyk\Documents\Visual Studio 2012\Projects\Service\Service\obj\Debug\Service.Testform.resources
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\bin\Debug\Service.exe.config
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\obj\Debug\Service.exe
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\obj\Debug\Service.pdb
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\obj\Debug\Service.Testform.resources
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\obj\Debug\Service.Properties.Resources.resources
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\obj\Debug\Service.csproj.GenerateResource.Cache
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\bin\Debug\Service.exe
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\bin\Debug\Service.pdb
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\bin\Debug\Hammock.ClientProfile.dll
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\bin\Debug\Newtonsoft.Json.dll
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\bin\Debug\TweetSharp.dll
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\bin\Debug\Hammock.ClientProfile.pdb
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\bin\Debug\Newtonsoft.Json.xml
+C:\Users\andrey.mitsyk\Documents\GitHub\Service\Service\bin\Debug\TweetSharp.pdb

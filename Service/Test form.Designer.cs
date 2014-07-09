@@ -66,14 +66,14 @@
             this.wb1.Location = new System.Drawing.Point(409, 31);
             this.wb1.MinimumSize = new System.Drawing.Size(20, 20);
             this.wb1.Name = "wb1";
-            this.wb1.Size = new System.Drawing.Size(431, 282);
+            this.wb1.Size = new System.Drawing.Size(674, 535);
             this.wb1.TabIndex = 3;
             // 
             // Testform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 359);
+            this.ClientSize = new System.Drawing.Size(1109, 578);
             this.Controls.Add(this.wb1);
             this.Controls.Add(this.tb2);
             this.Controls.Add(this.btn_go);

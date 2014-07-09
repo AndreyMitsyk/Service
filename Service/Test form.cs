@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
@@ -13,11 +14,13 @@ using System.Drawing.Imaging;
 using System.Collections;
 using System.Web;
 using TweetSharp;
+using Service;
 
 namespace Service
 {
     public partial class Testform : Form
     {
+        readonly Filter _filter = new Filter();
 
         private TwitterService _service;
         public string ConsumerKey = "8nZZDzlBOF7OnGFEJKd9AQYIZ";
@@ -34,7 +37,10 @@ namespace Service
         private void btn_go_Click(object sender, EventArgs e)
         {
             tb1.Text = "";
+            Tweethtml = "";
             int i = 0;
+
+            
             while (i <= 20)
             {
             var tweets = _service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions());
@@ -42,9 +48,22 @@ namespace Service
                 {
                     foreach (var tweet in tweets)
                     {
-                        Tweethtml += tweet.User.ScreenName + @":<br>" + tweet.TextAsHtml + @"<br><br>";
+                        if ((_filter.Hashcheck(tweet.Text)) | (_filter.Usercheck(tweet.User.ScreenName)))
+                        {
+                            Tweethtml += tweet.User.ScreenName + @":<br>" + tweet.TextAsHtml + @"<br>";
 
-                        tb1.Text += (tweet.User.ScreenName + " says '" + tweet.Text + "'");
+                            if (tweet.TextAsHtml.Contains("pic.twitter.com"))
+                            {
+                                string pic = Pict("http://twitter.com/" + tweet.User.ScreenName+
+                                    tweet.TextAsHtml.Substring(
+                                        tweet.TextAsHtml.IndexOf("/status/"), 34));
+                                Tweethtml += "<img src=\"" + pic + "\">";
+                            }
+                            Tweethtml += "<br>";
+                            tb2.Text += tweet.Id + "; ";
+                        }
+
+                        tb1.Text += (tweet.User.ScreenName + " says: '" + tweet.TextAsHtml + "'");
                         tb1.Text += Environment.NewLine;
                     }
                     i = 25;
@@ -62,7 +81,23 @@ namespace Service
                     <body id=body>" + Tweethtml +
                     @"</body>
                </html>";
-                
+
+        }
+
+        private string Pict(string html)
+        {
+            WebBrowser wbimg = new WebBrowser();
+
+            wbimg.Navigate(html);
+            {
+                while (wbimg.ReadyState != WebBrowserReadyState.Complete)
+                {
+                    Application.DoEvents();
+                }
+            }
+            string value = wbimg.DocumentText.Substring(wbimg.DocumentText.IndexOf("https://pbs.twimg.com/media/"),47);
+
+            return value;
         }
 
         private void Form1_Load(object sender, EventArgs e)

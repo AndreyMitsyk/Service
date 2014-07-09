@@ -8,14 +8,27 @@ namespace Service
 {
     class Filter
     {
-        public bool hash(string text)
+        private static readonly string[] Hashtag = new[] { "#akvelon", "#Akvelon"};
+        private static readonly string[] Username = new[] { "Akvelon" , "AkvelonRU", "Sevenmi007"};
+
+        /// <summary>
+        /// Check hashtag.
+        /// </summary>
+        /// <param name="text">tag</param>
+        /// <returns>bool value</returns>
+        public bool Hashcheck(string text)
         {
-            return text.Contains("#akvelon");
+            return Hashtag.Any(text.Contains);
         }
 
-        public bool user(string text)
+        /// <summary>
+        /// Check username.
+        /// </summary>
+        /// <param name="text">name</param>
+        /// <returns>bool value</returns>
+        public bool Usercheck(string text)
         {
-            return text.
+            return Username.Any(text.Contains);
         }
     }
 }
