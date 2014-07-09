@@ -8,14 +8,21 @@ namespace Service
 {
     class Filter
     {
+        /// <summary>
+        /// Tag comparing.
+        /// </summary>
         private static readonly string[] Hashtag = new[] { "#akvelon", "#Akvelon"};
+
+        /// <summary>
+        /// Username comparing.
+        /// </summary>
         private static readonly string[] Username = new[] { "Akvelon" , "AkvelonRU", "Sevenmi007"};
 
         /// <summary>
         /// Check hashtag.
         /// </summary>
-        /// <param name="text">tag</param>
-        /// <returns>bool value</returns>
+        /// <param name="text">Tag.</param>
+        /// <returns>Bool value.</returns>
         public bool Hashcheck(string text)
         {
             return Hashtag.Any(text.Contains);
@@ -24,8 +31,8 @@ namespace Service
         /// <summary>
         /// Check username.
         /// </summary>
-        /// <param name="text">name</param>
-        /// <returns>bool value</returns>
+        /// <param name="text">Name.</param>
+        /// <returns>Bool value.</returns>
         public bool Usercheck(string text)
         {
             return Username.Any(text.Contains);

@@ -14,19 +14,32 @@ using System.Drawing.Imaging;
 using System.Collections;
 using System.Web;
 using TweetSharp;
-using Service;
 
 namespace Service
 {
     public partial class Testform : Form
     {
+        /// <summary>
+        /// Filter class.
+        /// </summary>
         readonly Filter _filter = new Filter();
 
+        /// <summary>
+        /// Twitter service (sdk).
+        /// </summary>
         private TwitterService _service;
-        public string ConsumerKey = "8nZZDzlBOF7OnGFEJKd9AQYIZ";
-        public string ConsumerSecret = "lFzTnuyiP5ZA8dyV7DhIp3GULhz1n3QprnzISAwzoAW2S7mK1K";
-        public string AccessToken = "2427720560-TeWqCJAfRdhRFeDlT0PW619mtzkle4oAK7dKuWY";
-        public string AccessTokenSecret = "5sL8svkD4PkVciRlCRDKgprnqh5CoJZrokSBptOhZbeg3";
+
+        /// <summary>
+        /// Authentication keys.
+        /// </summary>
+        private string ConsumerKey = "8nZZDzlBOF7OnGFEJKd9AQYIZ";
+        private string ConsumerSecret = "lFzTnuyiP5ZA8dyV7DhIp3GULhz1n3QprnzISAwzoAW2S7mK1K";
+        private string AccessToken = "2427720560-TeWqCJAfRdhRFeDlT0PW619mtzkle4oAK7dKuWY";
+        private string AccessTokenSecret = "5sL8svkD4PkVciRlCRDKgprnqh5CoJZrokSBptOhZbeg3";
+
+        /// <summary>
+        /// Filtered tweets in the HTML.
+        /// </summary>
         public string Tweethtml;
 
         public Testform()
@@ -34,46 +47,50 @@ namespace Service
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Test button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_go_Click(object sender, EventArgs e)
         {
             tb1.Text = "";
+            // HTML reset.
             Tweethtml = "";
-            int i = 0;
 
-            
-            while (i <= 20)
-            {
+            // Tweets lately.
             var tweets = _service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions());
+
                 if (tweets != null)
                 {
                     foreach (var tweet in tweets)
                     {
+                        // Сheck the appropriate filter.
                         if ((_filter.Hashcheck(tweet.Text)) | (_filter.Usercheck(tweet.User.ScreenName)))
                         {
+                            // Add tweet HTML.
                             Tweethtml += tweet.User.ScreenName + @":<br>" + tweet.TextAsHtml + @"<br>";
 
+                            // If tweet contains image.
                             if (tweet.TextAsHtml.Contains("pic.twitter.com"))
                             {
+                                Tweethtml = Tweethtml.Remove(Tweethtml.IndexOf("pic.twitter.com"), 26);
+                                // Parse tweet img.
                                 string pic = Pict("http://twitter.com/" + tweet.User.ScreenName+
                                     tweet.TextAsHtml.Substring(
                                         tweet.TextAsHtml.IndexOf("/status/"), 34));
+                                // Add tweet img tag.
                                 Tweethtml += "<img src=\"" + pic + "\">";
                             }
                             Tweethtml += "<br>";
-                            tb2.Text += tweet.Id + "; ";
+                            tb2.Text += tweet.Id + @"; ";  
                         }
-
-                        tb1.Text += (tweet.User.ScreenName + " says: '" + tweet.TextAsHtml + "'");
+                        tb1.Text = (Tweethtml);
                         tb1.Text += Environment.NewLine;
                     }
-                    i = 25;
                 }
-                else i++;
-            }
-
-            if ((i>19)&(i!=25))
-                MessageBox.Show(@"Unable to Load");
            
+            // Open tweet HTML in browser.
             wb1.DocumentText = @"
                 <html>
                     <head>
@@ -81,26 +98,36 @@ namespace Service
                     <body id=body>" + Tweethtml +
                     @"</body>
                </html>";
-
         }
 
+        /// <summary>
+        /// Obtain a reference image of the code page.
+        /// </summary>
+        /// <param name="html">Page link.</param>
+        /// <returns>Image link.</returns>
         private string Pict(string html)
         {
             WebBrowser wbimg = new WebBrowser();
-
+            // Open img page.
             wbimg.Navigate(html);
             {
+                // Waiting for full load.
                 while (wbimg.ReadyState != WebBrowserReadyState.Complete)
                 {
                     Application.DoEvents();
                 }
             }
+            // Extract link.
             string value = wbimg.DocumentText.Substring(wbimg.DocumentText.IndexOf("https://pbs.twimg.com/media/"),47);
-
             return value;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Authentication service.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TestForm_Load(object sender, EventArgs e)
         {
             _service = new TwitterService(ConsumerKey, ConsumerSecret);
             _service.AuthenticateWith(AccessToken, AccessTokenSecret);

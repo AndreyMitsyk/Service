@@ -66,14 +66,14 @@
             this.wb1.Location = new System.Drawing.Point(409, 31);
             this.wb1.MinimumSize = new System.Drawing.Size(20, 20);
             this.wb1.Name = "wb1";
-            this.wb1.Size = new System.Drawing.Size(674, 535);
+            this.wb1.Size = new System.Drawing.Size(674, 282);
             this.wb1.TabIndex = 3;
             // 
             // Testform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1109, 578);
+            this.ClientSize = new System.Drawing.Size(1109, 327);
             this.Controls.Add(this.wb1);
             this.Controls.Add(this.tb2);
             this.Controls.Add(this.btn_go);
@@ -82,7 +82,7 @@
             this.MaximizeBox = false;
             this.Name = "Testform";
             this.Text = "Test";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.TestForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
