@@ -3,3 +3,4 @@ Service     <img src="http://i65.fastpic.ru/big/2014/0807/70/cc3f1d4d16ef37442f8
 
 service test
 Test application service for reading information from Twitter.
+<img src="http://o161.rp.ru:12/app/rest/builds/buildType:(id:AkvelonTimes_Build)/statusIcon"/>
