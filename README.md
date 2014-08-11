@@ -1,4 +1,4 @@
-Service     <img src="http://dw.rp.ru:8185/app/rest/builds/buildType:(id:AkvelonTimes_Build)/statusIcon"/>
+Service     <img src="http://m.akvelon.net:8185/app/rest/builds/buildType:(id:AkvelonTimes_Build)/statusIcon"/>
 =======
 
 service test
